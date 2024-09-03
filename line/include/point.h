@@ -1,24 +1,26 @@
-#ifndef LINE_H
-#define LINE_H
+#ifndef POINT_H
+#define POINT_H
 
 #include <glad/glad.h>
 #include <glm/glm.hpp>
 
-class Line
+class Point
 {
 public:
-    Line();
-    Line(glm::vec3 start, glm::vec3 end, glm::vec4 color); 
+    Point();
+    Point(glm::vec3 position, glm::vec4 color);
     void setup();
     void draw();
     void cleanup();
     glm::vec4 getColor();
     void setColor(glm::vec4 color);
+    glm::vec3 getPosition();
+    void setPosition(glm::vec3 position);
 
 private:
     unsigned int VBO, VAO;
-    glm::vec3 start, end;
+    glm::vec3 position;
     glm::vec4 color;
 };
 
-#endif // !LINE_H
+#endif // !POINT_H

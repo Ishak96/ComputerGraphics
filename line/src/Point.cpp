@@ -1,17 +1,16 @@
-#include "line.h"
+#include "point.h"
 #include <iostream>
 #include <glm/glm.hpp>
 
-Line::Line() : VAO(0), VBO(0), start(glm::vec3(0.0f)), end(glm::vec3(0.0f)), color(glm::vec4(0.0f)) { }
+Point::Point() : VAO(0), VBO(0), position(glm::vec3(0.0f)), color(glm::vec4(0.0f)) { }
 
-Line::Line(glm::vec3 start, glm::vec3 end, glm::vec4 color) : VAO(0), VBO(0), start(start), end(end), color(color) { }
+Point::Point(glm::vec3 position, glm::vec4 color) : VAO(0), VBO(0), position(position), color(color) { }
 
-void Line::setup()
+void Point::setup()
 {
-    // Define the vertices of the line
+    // Define the vertices of the point
     float vertices[] = {
-        start.x, start.y, start.z,
-        end.x, end.y, end.z
+        position.x, position.y, position.z,
     };
 
     // Generate the VAO and VBO
@@ -30,26 +29,36 @@ void Line::setup()
     glEnableVertexAttribArray(0);
 }
 
-void Line::draw()
+void Point::draw()
 {
-    // Bind the VAO and draw the line
+    // Bind the VAO and draw the point
     glBindVertexArray(VAO);
-    glDrawArrays(GL_LINES, 0, 2);
+    glDrawArrays(GL_POINTS, 0, 1);
 }
 
-void Line::cleanup()
+void Point::cleanup()
 {
     // Delete the VAO and VBO
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
 }
 
-glm::vec4 Line::getColor()
+glm::vec4 Point::getColor()
 {
     return color;
 }
 
-void Line::setColor(glm::vec4 color)
+void Point::setColor(glm::vec4 color)
 {
     this->color = color;
+}
+
+glm::vec3 Point::getPosition()
+{
+    return position;
+}
+
+void Point::setPosition(glm::vec3 position)
+{
+    this->position = position;
 }

@@ -1,0 +1,31 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "build",
+			"command": "C:\\msys64\\ucrt64\\bin\\g++.exe",
+            "args": [
+				"-g",
+                "-std=c++17",
+				"-I${workspaceFolder}\\include",
+				"-L${workspaceFolder}\\lib",				
+				"${workspaceFolder}\\src\\*.cpp",				
+				"${workspaceFolder}\\src\\glad.c",
+                "-lglfw3dll",
+                "-o",
+                "${workspaceFolder}\\app.exe"
+            ],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		}
+	]
+}
